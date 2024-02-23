@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+task frontendCopy() {
+    doLast {
+        copy {
+            from "frontend/dist/css"
+            into "backend/src/main/resources/static/css"
+        }
+        copy {
+            from "frontend/dist/js"
+            into "backend/src/main/resources/static/js"
+        }
+        copy {
+            from "frontend/dist/index.html"
+            into "backend/src/main/resources/templates"
+        }
+
+    }
+}

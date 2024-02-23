@@ -1,0 +1,4 @@
+rootProject.name = 'itmo_web_4'
+include 'untitled'
+include 'backend'
+
