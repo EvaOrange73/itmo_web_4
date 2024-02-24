@@ -19,8 +19,8 @@ export default {
       for (let point of this.points) {
         if(point.r === this.r) {
           computed.push({
-            x: point.x * 30,
-            y: point.y * 30,
+            x: 150 + point.x * 30,
+            y: 150 - point.y * 30,
             color: point.result ? 'green' : 'red'
           })
         }
