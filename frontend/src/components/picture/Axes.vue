@@ -12,7 +12,7 @@
     <text v-for="title in titles"
           v-bind:x="title.x"
           v-bind:y="title.y">
-      {{title.title}}
+      {{ title.title }}
     </text>
   </svg>
 </template>
@@ -32,7 +32,7 @@ export default {
         this.lines.push({x1: i * 30, y1: 147, x2: i * 30, y2: 153});
         this.lines.push({x1: 147, y1: i * 30, x2: 153, y2: i * 30});
         this.titles.push({title: (i - 5), x: i * 30, y: 145});
-        this.titles.push({title: (i - 5), x: 155 , y: i * 30});
+        this.titles.push({title: (5 - i), x: 155, y: i * 30});
       }
     }
   }
