@@ -10,7 +10,7 @@
         </div>
         <div class="container-small">
           <div class="container">
-            <Form/>
+            <Form ref="form"/>
           </div>
         </div>
       </div>
@@ -62,6 +62,9 @@ export default {
     },
     changeR(r) {
       this.radius = r;
+    },
+    changeXY(x, y){
+      this.$refs.form.setXY(x, y);
     }
   }
 }

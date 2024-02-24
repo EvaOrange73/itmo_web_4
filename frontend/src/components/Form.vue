@@ -1,4 +1,5 @@
 <template>
+  <div @click-picture="setXY">
   <div>
     <label for="x">X:</label>
     <input type="text" id="x" class="input" v-model="x">
@@ -24,6 +25,7 @@
   <div style="clear: both">
     <input type="submit" value="Отправить" class="small-button" v-on:click="submit()">
   </div>
+  </div>
 </template>
 
 <script>
@@ -37,17 +39,7 @@ export default {
       xError: undefined,
       yError: undefined,
       rError: undefined,
-      rValues: [
-        {value: -4, class: 'small-button'},
-        {value: -3, class: 'small-button'},
-        {value: -2, class: 'small-button'},
-        {value: -1, class: 'small-button'},
-        {value: 0, class: 'small-button'},
-        {value: 1, class: 'small-button'},
-        {value: 2, class: 'small-button'},
-        {value: 3, class: 'small-button'},
-        {value: 4, class: 'small-button'},
-      ],
+      rValues: [],
     }
   },
   methods: {
@@ -83,6 +75,16 @@ export default {
       if (this.r)
         return true;
       this.rError = 'Выберите радиус';
+    },
+    setXY(x, y) {
+      this.x = x;
+      this.y = y;
+
+    }
+  },
+  mounted() {
+    for (let i = -4; i <= 4; i++) {
+      this.rValues.push({value: i, class: 'small-button'});
     }
   }
 }
