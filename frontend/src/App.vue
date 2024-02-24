@@ -1,26 +1,100 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="background">
+    <div class="mid">
+      <div class="container-big">
+        <div class="container-small">
+          <div class="container">
+            <p>Определить, попадает ли точка в заданную область:</p>
+            <div id="task-container"></div>
+          </div>
+        </div>
+        <div class="container-small">
+          <div class="container">
+            <Form/>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <Table v-bind:points="points"/>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Form from './components/Form.vue'
+import Table from './components/Table.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Form, Table
+  },
+  data() {
+    return {points: []}
+  },
+  methods: {
+    getPoints() {
+      fetch('/task/points')
+          .then(response => response.json())
+          .then(result => this.points = result);
+    },
+    postPoint(x, y, r) {
+      let json = JSON.stringify({
+        x: x,
+        y: y,
+        r: r
+      });
+      fetch('/task/points', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: json
+      }).then(() => {
+        this.getPoints();
+      })
+
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background-color: #5F87CF;
+  min-width: 700px;
+}
+
+@media screen and (max-width: 1020px) {
+  .mid {
+    width: 700px;
+    margin: 10px auto;
+  }
+}
+
+@media screen and (min-width: 1020px) {
+  .mid {
+    margin: 10px 15%;
+  }
+}
+
+.container {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: #1F3F77 5px 5px 5px;
+  padding: 5px;
+  margin: 10px;
+  height: 100%;
+}
+
+.container-big {
+  display: flex;
+  min-width: 700px;
+  margin-bottom: 40px;
+}
+
+.container-small {
+  width: 50%;
 }
 </style>
