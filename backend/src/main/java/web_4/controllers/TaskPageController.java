@@ -19,7 +19,7 @@ public class TaskPageController {
     @GetMapping("/task")
     public ModelAndView taskPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("task_page");
         return modelAndView;
     }
 

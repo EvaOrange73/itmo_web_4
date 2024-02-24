@@ -18,7 +18,7 @@ public class StartPageController {
     @GetMapping("/")
     public ModelAndView startPage(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("start_page");
         return modelAndView;
     }
 

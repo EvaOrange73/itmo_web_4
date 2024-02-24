@@ -20,7 +20,11 @@ task frontendCopy() {
             into "backend/src/main/resources/static/js"
         }
         copy {
-            from "frontend/dist/index.html"
+            from "frontend/dist/start_page.html"
+            into "backend/src/main/resources/templates"
+        }
+        copy {
+            from "frontend/dist/task_page.html"
             into "backend/src/main/resources/templates"
         }
 
