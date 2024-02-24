@@ -1,3 +1,4 @@
 import { createApp } from 'vue'
+import Login from './StartPage.vue'
 
-createApp().mount('#login')
+createApp(Login).mount('#login')

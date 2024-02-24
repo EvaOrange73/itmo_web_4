@@ -1,10 +1,7 @@
 package web_4.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import web_4.MyUser;
@@ -23,15 +20,15 @@ public class StartPageController {
     }
 
     @PostMapping("/sign-up")
-    public RedirectView signUp(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password){
-        repository.save(new MyUser(username, password));
+    public RedirectView signUp(@RequestBody MyUser user){
+        repository.save(user);
         return new RedirectView("/task");
     }
 
     @PostMapping("/sign-in")
-    public RedirectView signIn(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password){
-        MyUser user = repository.findByUsername(username);
-        if (user.getPassword().equals(password))
+    public RedirectView signIn(@RequestBody MyUser user){
+        MyUser userFromDb = repository.findByUsername(user.getUsername());
+        if (userFromDb != null && userFromDb.getPassword().equals(user.getPassword()))
             return new RedirectView("/task");
         return new RedirectView("/");
     }

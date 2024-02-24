@@ -1,0 +1,31 @@
+input[type='text'], input[type='password'] {
+    margin: 10px;
+    padding-left: 10px;
+    height: 30px;
+    width: 290px;
+    border: black solid 1px;
+    border-radius: 10px;
+}
+
+input[type='submit'] {
+    width: 200px;
+    height: 30px;
+
+    display: block;
+    margin: 7px auto;
+
+    background-color: white;
+    border: black solid 1px;
+    border-radius: 10px;
+    box-shadow: black 2px 2px 5px;
+}
+
+.error{
+    color: red;
+    border: red solid 1px !important;
+}
+
+input[type='submit']:hover {
+    background-color: #3399ff;
+    box-shadow: black 1px 1px 3px;
+}
