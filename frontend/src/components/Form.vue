@@ -57,6 +57,7 @@ export default {
         other['class'] = 'small-button';
       }
       r['class'] = 'small-button-pressed';
+      this.$root.changeR(this.r);
     },
     submit() {
       if (this.validateX() & this.validateY() & this.validateR()) {

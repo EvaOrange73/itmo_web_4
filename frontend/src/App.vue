@@ -5,7 +5,7 @@
         <div class="container-small">
           <div class="container">
             <p>Определить, попадает ли точка в заданную область:</p>
-            <div id="task-container"></div>
+            <Picture v-bind:points="points" v-bind:r="radius"/>
           </div>
         </div>
         <div class="container-small">
@@ -24,14 +24,18 @@
 <script>
 import Form from './components/Form.vue'
 import Table from './components/Table.vue'
+import Picture from './components/picture/Picture.vue'
 
 export default {
   name: 'App',
   components: {
-    Form, Table
+    Form, Table, Picture
   },
   data() {
-    return {points: []}
+    return {
+      points: [{x: 1, y: 2, r: 3, result: true, requestTime: 1, processTime: 1}],
+      radius: 2
+    }
   },
   methods: {
     getPoints() {
@@ -55,6 +59,9 @@ export default {
         this.getPoints();
       })
 
+    },
+    changeR(r) {
+      this.radius = r;
     }
   }
 }

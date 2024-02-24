@@ -1,8 +1,8 @@
 <template>
   <svg>
-    <rect fill="#3399ff" x="150" y="150" v-bind:width="half_r" v-bind:height="r"/>
-    <polygon fill="#3399ff" v-bind:points="polygon_points"/>
-    <path fill="#3399ff" v-bind:d="path_points"/>
+    <polygon fill="#3399ff" :points="rect_points"/>
+    <polygon fill="#3399ff" :points="polygon_points"/>
+    <path fill="#3399ff" :d="path_points"/>
   </svg>
 </template>
 
@@ -10,17 +10,25 @@
 export default {
   name: "Figure",
   props: ['radius'],
-  data() {
-    return {
-      r: this.$props.radius * 30,
-      half_r: this.$props.radius * 30 / 2,
-      polygon_points: '',
-      path_points: ''
+  computed: {
+    rect_points() {
+      return '150, 150 ' +
+          '150 ' + (150 + this.radius * 30) +
+          ' ' + (150 + this.radius * 30 / 2) + ',' + (150 + this.radius * 30) +
+          ' ' + (150 + this.radius * 30 / 2) + ', 150'
+    },
+    polygon_points() {
+      return (150 - this.radius * 30 / 2) +
+          ', 150 150,150 150,' +
+          (150 + this.radius * 30 / 2);
+    },
+    path_points() {
+      return 'M150,150 L' +
+          (150 + this.radius * 30) + ',150 A' +
+          this.radius * 30 + ',' + this.radius * 30 +
+          ' 0 0,0 150,' + (150 - this.radius * 30) +
+          ' Z';
     }
-  },
-  mounted() {
-    this.polygon_points = (150 - this.half_r) + ', 150 150,150 150,' + (150 + this.half_r);
-    this.path_points = 'M150,150 L' + (150 + this.r) + ',150 A' + this.r + ',' + this.r + ' 0 0,0 150,' + (150 - this.r) + ' Z';
   }
 }
 </script>
