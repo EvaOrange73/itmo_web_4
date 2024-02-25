@@ -34,6 +34,14 @@ export default {
         this.$root.sign_in(this.name, this.password);
       }
     }
+  },
+  mounted(){
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
+    if(urlParams.has('error')){
+      this.name_error = 'error';
+      this.password_error = 'error';
+    }
   }
 }
 </script>

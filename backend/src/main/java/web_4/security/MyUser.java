@@ -1,9 +1,11 @@
-package web_4;
+package web_4.security;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Data;
 
+@Data
 @Entity
 public class MyUser {
     @Id
@@ -18,17 +20,6 @@ public class MyUser {
     }
 
     public MyUser() {
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }

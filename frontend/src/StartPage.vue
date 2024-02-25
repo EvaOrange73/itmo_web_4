@@ -48,17 +48,21 @@ export default {
       this.sign_up_selected = 'selected';
     },
     sign_in(username, password) {
-      let json = JSON.stringify({
-        username: username,
-        password: password
-      });
+      const data = new URLSearchParams();
+      data.append('username', username);
+      data.append('password', password);
       fetch('/sign-in', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: json
-      });
+        body: data
+      }).then(response => {
+            if (response.redirected) {
+              window.location.replace(response.url);
+            }
+          }
+      )
     },
     sign_up(username, password) {
       let json = JSON.stringify({
@@ -71,7 +75,12 @@ export default {
           'Content-Type': 'application/json'
         },
         body: json
-      });
+      }).then(response => {
+            if (response.redirected) {
+              window.location.replace(response.url);
+            }
+          }
+      );
     }
   }
 }
