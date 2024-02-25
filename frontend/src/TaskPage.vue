@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Form from './components/Form.vue'
+import Form from './components/forms/PointForm.vue'
 import Table from './components/Table.vue'
 import Picture from './components/picture/Picture.vue'
 

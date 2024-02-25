@@ -29,3 +29,7 @@ input[type='submit']:hover {
     background-color: #3399ff;
     box-shadow: black 1px 1px 3px;
 }
+
+p {
+    margin-left: 15px;
+}
