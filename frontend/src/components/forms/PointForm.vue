@@ -1,30 +1,27 @@
 <template>
   <div @click-picture="setXY">
-  <div>
-    <label for="x">X:</label>
-    <input type="text" id="x" class="input" v-model="x">
-    <p class="errorMessage">{{ xError }}</p>
-  </div>
-  <div>
-    <label for="x">Y:</label>
-    <input type="text" id="y" class="input" v-model="y">
-    <p class="errorMessage">{{ yError }}</p>
-  </div>
-  <div>
-    <label>R:</label>
     <div>
-      <input type="button"
-             v-for="r in rValues"
-             v-bind:class="r.class"
-             v-bind:value="r.value"
-             v-on:click="press(r)"
-      >
+      <input type="text" placeholder="X" id="x" class="input" v-model="x">
+      <p class="errorMessage">{{ xError }}</p>
     </div>
-    <p class="errorMessage">{{ rError }}</p>
-  </div>
-  <div style="clear: both">
-    <input type="submit" value="Отправить" class="small-button" v-on:click="submit()">
-  </div>
+    <div>
+      <input type="text" placeholder="Y" id="y" class="input" v-model="y">
+      <p class="errorMessage">{{ yError }}</p>
+    </div>
+    <div>
+      <div>
+        <input type="button"
+               v-for="r in rValues"
+               v-bind:class="r.class"
+               v-bind:value="r.value"
+               v-on:click="press(r)"
+        >
+      </div>
+      <p class="errorMessage">{{ rError }}</p>
+    </div>
+    <div style="clear: both">
+      <input type="submit" value="Отправить" v-on:click="submit()">
+    </div>
   </div>
 </template>
 
@@ -46,9 +43,9 @@ export default {
     press(r) {
       this.r = r.value;
       for (let other of this.rValues) {
-        other['class'] = 'small-button';
+        other['class'] = '';
       }
-      r['class'] = 'small-button-pressed';
+      r['class'] = 'pressed';
       this.$root.changeR(this.r);
     },
     submit() {
@@ -84,55 +81,13 @@ export default {
   },
   mounted() {
     for (let i = -4; i <= 4; i++) {
-      this.rValues.push({value: i, class: 'small-button'});
+      this.rValues.push({value: i, class: 'small-button.css'});
     }
   }
 }
 </script>
 
-<style scoped>
-.input {
-  display: block;
-  width: 200px;
-
-}
-
-.small-button {
-  width: auto;
-  min-width: 30px;
-  height: 20px;
-
-  display: block;
-  float: left;
-  margin: 7px;
-
-  background-color: white;
-  border: black solid 1px;
-  border-radius: 10px;
-  box-shadow: black 2px 2px 5px;
-}
-
-.small-button:hover {
-  background-color: #3399ff;
-  box-shadow: black 1px 1px 3px;
-}
-
-.small-button-pressed {
-  width: auto;
-  min-width: 30px;
-  height: 20px;
-
-  display: block;
-  float: left;
-  margin: 7px;
-
-  border: black solid 1px;
-  border-radius: 10px;
-
-  background-color: #3399ff;
-}
-
-.errorMessage {
-  color: red;
-}
+<style>
+@import "../../../styles/form.css";
+@import "../../../styles/button.css";
 </style>

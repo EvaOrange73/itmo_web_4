@@ -87,4 +87,5 @@ export default {
 
 <style>
 @import "../../../styles/form.css";
+@import "../../../styles/button.css";
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div id="background">
     <div class="mid">
+      <div class="container">
+        <input type="submit" value="Выйти" v-on:click="logout">
+      </div>
       <div class="container-big">
         <div class="container-small">
           <div class="container">
@@ -33,11 +36,19 @@ export default {
   },
   data() {
     return {
-      points: [{x: 1, y: 2, r: 3, result: true, requestTime: 1, processTime: 1}],
-      radius: 2
+      points: [],
+      radius: 0
     }
   },
   methods: {
+    logout(){
+      fetch('/logout').then(response => {
+            if (response.redirected) {
+              window.location.replace(response.url);
+            }
+          }
+      );
+    },
     getPoints() {
       fetch('/task/points')
           .then(response => response.json())
