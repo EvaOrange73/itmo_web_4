@@ -22,16 +22,13 @@ public class StartPageController {
     }
 
     @PostMapping("/sign-up")
-    public RedirectView signUp(@RequestBody MyUser user){
-        if (repository.findByUsername(user.getUsername()) == null) {
-            user.setPassword(
-                    new BCryptPasswordEncoder().encode(
-                            user.getPassword()
-                    )
-            );
-            repository.save(user);
+    public RedirectView signUp(@RequestParam String username, @RequestParam String password){
+        if (repository.findByUsername(username) == null) {
+            repository.save(new MyUser(
+                    username,
+                    new BCryptPasswordEncoder().encode(password)
+            ));
             return new RedirectView("/sign-in?success");
-
         }
         return new RedirectView("/sign-in?fail");
     }

@@ -26,11 +26,11 @@ export default {
     }
   },
   methods: {
-    sign_in(username, password) {
+    request(url, username, password) {
       const data = new URLSearchParams();
       data.append('username', username);
       data.append('password', password);
-      fetch('/sign-in', {
+      fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -43,23 +43,11 @@ export default {
           }
       )
     },
+    sign_in(username, password) {
+      this.request('/sign-in', username, password);
+    },
     sign_up(username, password) {
-      let json = JSON.stringify({
-        username: username,
-        password: password
-      });
-      fetch('/sign-up', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: json
-      }).then(response => {
-            if (response.redirected) {
-              window.location.replace(response.url);
-            }
-          }
-      );
+      this.request('/sign-up', username, password);
     }
   },
   beforeMount() {
