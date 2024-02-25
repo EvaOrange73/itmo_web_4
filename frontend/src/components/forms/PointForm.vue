@@ -69,9 +69,9 @@ export default {
     },
     validateR() {
       this.rError = undefined;
-      if (this.r)
+      if (this.r > 0)
         return true;
-      this.rError = 'Выберите радиус';
+      this.rError = 'Выберите положительный радиус';
     },
     setXY(x, y) {
       this.x = x;
