@@ -16,6 +16,9 @@ public class TaskPageController {
     @Autowired
     PointRepository repository;
 
+    @Autowired
+    AreaChecker areaChecker;
+
     @GetMapping("/task")
     public ModelAndView taskPage() {
         ModelAndView modelAndView = new ModelAndView();
